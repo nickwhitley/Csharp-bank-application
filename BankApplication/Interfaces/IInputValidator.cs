@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace BankApplication.Interfaces
 {
-    internal class IInputValidator
+    internal interface IInputValidator
     {
+        bool ValidateName(string name);
+        bool ValidateUsername(string username);
+        bool ValidateEmail(string email);
+        bool ValidatePassword(string password);
+        bool ValidateSSN(int ssn);
+
     }
 }

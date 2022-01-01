@@ -8,12 +8,12 @@ namespace BankApplication.Interfaces
 {
     internal interface IUser
     {
-        string firstName { get; }
-        string lastName { get; }
-        string email { get; }
-        string ssn { get; }
-        string username { get; }
-        string password { get; }
+        string FirstName { get; }
+        string LastName { get; }
+        string Email { get; }
+        string SSN { get; }
+        string Username { get; }
+        string Password { get; }
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BankApplication.Interfaces;
+using BankApplication.Utilities;
 using BankApplication.Views;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace BankApplication.ConsoleView
             LoginView,
             SignUpView
         }
+
+        IInputValidator inputValidator = new InputValidator();
         public void ChangeView(View view)
         {
             ClearScreen();
@@ -35,7 +38,7 @@ namespace BankApplication.ConsoleView
                     new LoginView(this);
                     break;
                 case View.SignUpView:
-                    new SignUpView(this);
+                    new SignUpView(this, this.inputValidator);
                     break;
 
             }
