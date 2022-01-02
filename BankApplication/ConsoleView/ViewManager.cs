@@ -25,6 +25,7 @@ namespace BankApplication.ConsoleView
 
         IInputValidator inputValidator = new InputValidator();
         Factory factory = new Factory();
+        DataManager dataManager = new DataManager();
         public void ChangeView(View view)
         {
             ClearScreen();
@@ -40,7 +41,8 @@ namespace BankApplication.ConsoleView
                     new LoginView(this);
                     break;
                 case View.SignUpView:
-                    new SignUpView(this, this.inputValidator, this.factory);
+                    new SignUpView(this, this.inputValidator, this.factory, this.dataManager);
+                    
                     break;
 
             }

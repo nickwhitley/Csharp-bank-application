@@ -1,6 +1,7 @@
 ﻿using BankApplication.ConsoleView;
 using BankApplication.Factories;
 using BankApplication.Interfaces;
+using BankApplication.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,13 @@ namespace BankApplication.Views
         IViewManager _viewManager;
         IInputValidator _inputValidator;
         Factory _factory;
-        public SignUpView(IViewManager viewManager, IInputValidator inputValidator, Factory factory)
+        DataManager _dataManager;
+        public SignUpView(IViewManager viewManager, IInputValidator inputValidator, Factory factory, DataManager dataManager)
         {
             _viewManager = viewManager;
             _inputValidator = inputValidator;
             _factory = factory;
+            _dataManager = dataManager;
             DisplayView();
         }
 
@@ -37,8 +40,7 @@ namespace BankApplication.Views
             var SSN = AskForSSN();
             var username = AskForUsername();
             var password = AskForPassword();
-            _factory.createUser(firstName, lastName, email, SSN, username, password);
-            
+            _dataManager.SaveUser(_factory.createUser(firstName, lastName, email, SSN, username, password));
             
         }
 

@@ -8,7 +8,7 @@ namespace BankApplication.Interfaces
 {
     internal interface IUserAccountsData
     {
-        Dictionary<IUser, IBankAccount> UserAccounts { get; }
+        Dictionary<IUser, IBankAccount> UserBankAccounts { get; }
 
         List<IBankAccount> GetUserBankAccounts(IUser user);
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,17 +16,17 @@ namespace BankApplication.Users
         private int _SSN;
         private string _userName;
         private string _password;
-        public string FirstName => throw new NotImplementedException();
+        public string FirstName => _firstName;
 
-        public string LastName => throw new NotImplementedException();
+        public string LastName => _lastName;
 
-        public string Email => throw new NotImplementedException();
+        public string Email => _email;
 
-        public int SSN => throw new NotImplementedException();
+        public int SSN => _SSN;
 
-        public string Username => throw new NotImplementedException();
+        public string Username => _userName;
 
-        public string Password => throw new NotImplementedException();
+        public string Password => _password;
 
         public User(string firstName, string lastName, string email, int SSN, string username, string password)
         {
@@ -35,7 +36,7 @@ namespace BankApplication.Users
             _SSN = SSN;
             _userName = username;
             _password = password;
-            Console.WriteLine("USER CREATED!!!!");
+            
         }
     }
 }
