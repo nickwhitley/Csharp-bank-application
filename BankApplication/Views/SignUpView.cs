@@ -1,4 +1,5 @@
 ﻿using BankApplication.ConsoleView;
+using BankApplication.Factories;
 using BankApplication.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace BankApplication.Views
     {
         IViewManager _viewManager;
         IInputValidator _inputValidator;
-        public SignUpView(IViewManager viewManager, IInputValidator inputValidator)
+        Factory _factory;
+        public SignUpView(IViewManager viewManager, IInputValidator inputValidator, Factory factory)
         {
             _viewManager = viewManager;
             _inputValidator = inputValidator;
+            _factory = factory;
             DisplayView();
         }
 
@@ -32,6 +35,11 @@ namespace BankApplication.Views
             var lastName = AskForName("last");
             var email = AskForEmail();
             var SSN = AskForSSN();
+            var username = AskForUsername();
+            var password = AskForPassword();
+            _factory.createUser(firstName, lastName, email, SSN, username, password);
+            
+            
         }
 
 
@@ -54,7 +62,6 @@ namespace BankApplication.Views
             string email = Console.ReadLine();
             if (!_inputValidator.ValidateEmail(email))
             {
-                Console.WriteLine("Invalid email");
                 return AskForEmail();
             }
             return email;
@@ -65,15 +72,37 @@ namespace BankApplication.Views
             Console.WriteLine("SSN:");
             if(int.TryParse(Console.ReadLine(), out int SSN))
             {
-                if (_inputValidator.ValidateSSN(SSN))
+                if (!_inputValidator.ValidateSSN(SSN))
                 {
-                    return SSN;
+                    return AskForSSN();
                 }
             }
-            Console.WriteLine("Please enter your social security number as XXXXXXXXX or XXX-XX-XXXX");
-            return AskForSSN();
+            return SSN;
         }
 
+        private string AskForUsername()
+        {
+            Console.WriteLine("Username:");
+            string username = Console.ReadLine();
+            if (!_inputValidator.ValidateUsername(username))
+            {
+                return AskForUsername();
+            }
+            return username;
+        }
+
+        private string AskForPassword()
+        {
+            Console.WriteLine("Password:");
+            string password = Console.ReadLine();
+            Console.WriteLine("Verify Password:");
+            string passwordVerify = Console.ReadLine();
+            if(!_inputValidator.ValidatePassword(password, passwordVerify))
+            {
+                return AskForPassword();
+            }
+            return password;
+        }
 
     }
 }

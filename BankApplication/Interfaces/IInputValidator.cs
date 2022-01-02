@@ -11,8 +11,9 @@ namespace BankApplication.Interfaces
         bool ValidateName(string name);
         bool ValidateUsername(string username);
         bool ValidateEmail(string email);
-        bool ValidatePassword(string password);
+        bool ValidatePassword(string password, string passwordVerify);
         bool ValidateSSN(int ssn);
+        
 
     }
 }

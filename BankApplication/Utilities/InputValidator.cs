@@ -41,19 +41,47 @@ namespace BankApplication.Utilities
             return true;
         }
 
-        public bool ValidatePassword(string password)
+        public bool ValidatePassword(string password, string passwordVerify)
         {
-            throw new NotImplementedException();
+            if(string.IsNullOrEmpty(password) || string.IsNullOrEmpty(passwordVerify))
+            {
+                Console.WriteLine("Passwords can't be empty and must match");
+                return false;
+            }
+            if (!password.Equals(passwordVerify))
+            {
+                Console.WriteLine("Passwords must match");
+                return false;
+            }
+            return true;
         }
 
         public bool ValidateSSN(int ssn)
         {
-            throw new NotImplementedException();
+            if(!ssn.ToString().Length.Equals(9))
+            {
+                Console.WriteLine("Please enter your social security number as XXXXXXXXX with 9 numbers");
+                return false;
+            }
+            return true;
+            
         }
 
         public bool ValidateUsername(string username)
         {
-            throw new NotImplementedException();
+            int usernameMaxLength = 15;
+            int usernameMinLength = 8;
+            if(username.Length > usernameMaxLength)
+            {
+                Console.WriteLine("Username must be between 8 and 15 characters in length. Please try again.");
+                return false;
+            }
+            if(username.Length < usernameMinLength)
+            {
+                Console.WriteLine("Username must be between 8 and 15 characters in length. Please try again.");
+                return false;
+            }
+            return true;
         }
     }
 }
