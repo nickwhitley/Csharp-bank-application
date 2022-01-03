@@ -13,5 +13,7 @@ namespace BankApplication.ConsoleView
         public void ClearScreen();
 
         public void ChangeView(ViewManager.View view);
+
+        public void ChangeToAccountView(IUser user);
     }
 }

@@ -11,13 +11,17 @@ namespace BankApplication.Views
     internal class AccountView : IView
     {
         IViewManager _viewManager;
-        public AccountView(IViewManager viewManager)
+        IUser _user;
+        public AccountView(IViewManager viewManager, IUser user)
         {
             _viewManager = viewManager;
+            _user = user;
+
+            DisplayView();
         }
         public void DisplayView()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Hello { _user.FullName }");
         }
     }
 }

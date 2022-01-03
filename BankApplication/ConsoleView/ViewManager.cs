@@ -34,9 +34,6 @@ namespace BankApplication.ConsoleView
                 case View.InitialView:
                     new InitialView(this);
                     break;
-                case View.AccountView:
-                    new AccountView(this);
-                    break;
                 case View.LoginView:
                     new LoginView(this);
                     break;
@@ -48,6 +45,12 @@ namespace BankApplication.ConsoleView
             }
                 
 
+        }
+
+        public void ChangeToAccountView(IUser user)
+        {
+            ClearScreen();
+            new AccountView(this, user);
         }
 
         public void ClearScreen()

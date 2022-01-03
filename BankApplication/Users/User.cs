@@ -27,6 +27,7 @@ namespace BankApplication.Users
         public string Username => _userName;
 
         public string Password => _password;
+        public string FullName => _firstName + " " + _lastName;
 
         public User(string firstName, string lastName, string email, int SSN, string username, string password)
         {

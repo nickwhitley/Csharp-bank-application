@@ -14,6 +14,7 @@ namespace BankApplication.Interfaces
         int SSN { get; }
         string Username { get; }
         string Password { get; }
+        string FullName { get; }
 
     }
 }

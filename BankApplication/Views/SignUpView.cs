@@ -40,7 +40,10 @@ namespace BankApplication.Views
             var SSN = AskForSSN();
             var username = AskForUsername();
             var password = AskForPassword();
-            _dataManager.SaveUser(_factory.createUser(firstName, lastName, email, SSN, username, password));
+
+            var user = _factory.createUser(firstName, lastName, email, SSN, username, password);
+            _dataManager.SaveUser(user);
+            _viewManager.ChangeToAccountView(user);
             
         }
 
