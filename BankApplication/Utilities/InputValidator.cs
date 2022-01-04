@@ -41,16 +41,24 @@ namespace BankApplication.Utilities
             return true;
         }
 
+
         public bool ValidatePassword(string password, string passwordVerify)
         {
+            int passwordMinLength = 8;
+            int passwordMaxLength = 15;
             if(string.IsNullOrEmpty(password) || string.IsNullOrEmpty(passwordVerify))
             {
-                Console.WriteLine("Passwords can't be empty and must match");
+                Console.WriteLine("Passwords can't be empty.");
                 return false;
             }
             if (!password.Equals(passwordVerify))
             {
-                Console.WriteLine("Passwords must match");
+                Console.WriteLine("Passwords must match.");
+                return false;
+            }
+            if(password.Length < passwordMinLength || password.Length > passwordMaxLength)
+            {
+                Console.WriteLine($"Passwords must be between { passwordMinLength } and { passwordMaxLength } characters in length.");
                 return false;
             }
             return true;

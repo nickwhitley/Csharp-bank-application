@@ -24,5 +24,11 @@ namespace BankApplication.Utilities
         {
             usersData.RemoveUser(user);
         }
+
+        public Tuple<bool, IUser?> VerifyUserLogin(string username, string password)
+        {
+            var returnTuple = usersData.VerifyUsernameAndPassword(username, password);
+            return returnTuple;
+        }
     }
 }

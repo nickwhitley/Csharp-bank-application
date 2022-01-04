@@ -95,7 +95,7 @@ namespace BankApplication.Views
 
         private void Logout()
         {
-            throw new NotImplementedException();
+            _viewManager.ChangeView(ViewManager.View.InitialView);
         }
     }
 }

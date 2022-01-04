@@ -35,10 +35,10 @@ namespace BankApplication.ConsoleView
                     new InitialView(this);
                     break;
                 case View.LoginView:
-                    new LoginView(this);
+                    new LoginView(this, inputValidator, dataManager);
                     break;
                 case View.SignUpView:
-                    new SignUpView(this, this.inputValidator, this.factory, this.dataManager);
+                    new SignUpView(this, inputValidator, factory, dataManager);
                     
                     break;
 

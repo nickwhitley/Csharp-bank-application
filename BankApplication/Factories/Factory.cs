@@ -17,8 +17,7 @@ namespace BankApplication.Factories
 
         public IUser createUser(string firstName, string lastName, string email, int SSN, string username, string password)
         {
-            return new User(firstName, lastName, email, SSN, username, password);
-
+            return new User(firstName, lastName, email, SSN, username.ToLower(), password);
         }
 
     }

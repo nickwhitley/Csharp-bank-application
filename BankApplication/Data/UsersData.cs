@@ -21,5 +21,31 @@ namespace BankApplication.Data
         {
             _users.Remove(user);
         }
+
+        public Tuple<bool, IUser?> VerifyUsernameAndPassword(string username, string password)
+        {
+            bool usernameCheck = false;
+            bool passwordCheck = false;
+            Tuple<bool, IUser>? exisitngUser = new Tuple<bool, IUser>(false, null);
+
+            foreach (var user in _users)
+            {
+                if (user.Username.Equals(username.ToLower()))
+                {
+                    usernameCheck = true;
+                }
+                if (user.Password.Equals(password))
+                {
+                    passwordCheck = true;
+                }
+                if(usernameCheck && passwordCheck)
+                {
+                    Tuple<bool, IUser> existingUser = new Tuple<bool, IUser>(true, user);
+                    return existingUser;
+                }
+            }
+
+            return exisitngUser;
+        }
     }
 }

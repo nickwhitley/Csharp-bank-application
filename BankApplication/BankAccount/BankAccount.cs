@@ -4,18 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankApplication.Enums;
 
 namespace BankApplication.BankAccount
 {
     internal class BankAccount : IBankAccount
     {
         #region properties
-        public enum BankAccountType
-        {
-            CHECKING,
-            SAVINGS
-        }
-
         private int _accountNumber;
         private decimal _accountBalance;
         private BankAccountType _bankAccountType;
