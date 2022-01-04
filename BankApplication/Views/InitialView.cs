@@ -44,6 +44,8 @@ namespace BankApplication.Views
 
         private uint GetUserChoice(int choiceMax)
         {
+            ///TODO maybe make this a switch statement
+            
             uint choice;
             if(uint.TryParse(Console.ReadLine(), out choice))
             {
