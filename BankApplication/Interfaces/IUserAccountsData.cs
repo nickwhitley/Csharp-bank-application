@@ -12,7 +12,7 @@ namespace BankApplication.Interfaces
 
         List<IBankAccount> GetUserBankAccounts(IUser user);
 
-        void AddUserBankAccount(IUser user, IBankAccount bankAccount);
+        bool AddUserBankAccount(IUser user, IBankAccount bankAccount);
 
         void RemoveUserBankAccount(IUser user, IBankAccount bankAccount);
     }

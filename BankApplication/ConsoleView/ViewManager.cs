@@ -50,7 +50,7 @@ namespace BankApplication.ConsoleView
         public void ChangeToAccountView(IUser user)
         {
             ClearScreen();
-            new AccountView(this, user, dataManager);
+            new AccountView(this, user, dataManager, factory);
         }
 
         public void ClearScreen()

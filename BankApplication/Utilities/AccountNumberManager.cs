@@ -10,22 +10,33 @@ namespace BankApplication.Utilities
 {
     internal class AccountNumberManager : IAccountNumberManager
     {
-        private readonly int accountNumberLength = 12;
-        public List<int> AccountNumbers => throw new NotImplementedException();
+        private readonly int accountNumberMin = 111111111;
+        private readonly int accountNumberMax = 999999999;
+
+        private List<int> _accountNumbers = new List<int>();
+        public List<int> AccountNumbers => _accountNumbers;
 
         public void AddAccountNumber(int accountNumber)
         {
-            throw new NotImplementedException();
+            AccountNumbers.Add(accountNumber);
         }
 
         public int GenerateAccountNumber()
         {
-            throw new NotImplementedException();
+            Random random = new Random();
+            int accountNumber = random.Next(accountNumberMin, accountNumberMax);
+            if (AccountNumbers.Contains(accountNumber))
+            {
+                return GenerateAccountNumber();
+            }
+            AddAccountNumber(accountNumber);
+            return accountNumber;
+
         }
 
         public void RemoveAccountNumber(int accountNumber)
         {
-            throw new NotImplementedException();
+            AccountNumbers?.Remove(accountNumber);
         }
     }
 }

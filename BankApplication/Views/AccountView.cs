@@ -2,6 +2,7 @@
 using BankApplication.Interfaces;
 using BankApplication.Utilities;
 using BankApplication.Views.AccountViewMenus;
+using BankApplication.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,13 @@ namespace BankApplication.Views
         IViewManager _viewManager;
         IUser _user;
         DataManager _dataManager;
-        public AccountView(IViewManager viewManager, IUser user, DataManager dataManager)
+        Factory _factory;
+        public AccountView(IViewManager viewManager, IUser user, DataManager dataManager, Factory factory)
         {
             _viewManager = viewManager;
             _user = user;
             _dataManager = dataManager;
+            _factory = factory;
 
             DisplayView();
         }
@@ -76,7 +79,7 @@ namespace BankApplication.Views
                         TransactionsScreen transactions = new TransactionsScreen();
                         break;
                     case 7:
-                        OpenAccountScreen openAccount = new OpenAccountScreen();
+                        OpenAccountScreen openAccount = new OpenAccountScreen(_user, _viewManager, _factory, _dataManager);
                         break;
                     case 8:
                         CloseAccountScreen closeAccount = new CloseAccountScreen();

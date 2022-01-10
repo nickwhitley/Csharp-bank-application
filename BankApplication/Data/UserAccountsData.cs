@@ -9,11 +9,13 @@ namespace BankApplication.Data
 {
     internal class UserAccountsData : IUserAccountsData
     {
-        public Dictionary<IUser, IBankAccount> UserBankAccounts => throw new NotImplementedException();
+        private Dictionary<IUser, IBankAccount> _accounts = new Dictionary<IUser, IBankAccount>();
+        public Dictionary<IUser, IBankAccount> UserBankAccounts => _accounts;
 
-        public void AddUserBankAccount(IUser user, IBankAccount bankAccount)
+        public bool AddUserBankAccount(IUser user, IBankAccount bankAccount)
         {
-            throw new NotImplementedException();
+            return UserBankAccounts.TryAdd(user, bankAccount);
+            
         }
 
         public List<IBankAccount> GetUserBankAccounts(IUser user)

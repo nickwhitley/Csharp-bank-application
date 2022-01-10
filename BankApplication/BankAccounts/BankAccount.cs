@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BankApplication.Enums;
 
-namespace BankApplication.BankAccount
+namespace BankApplication.BankAccounts
 {
     internal class BankAccount : IBankAccount
     {

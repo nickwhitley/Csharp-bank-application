@@ -41,7 +41,7 @@ namespace BankApplication.Views
             var username = AskForUsername();
             var password = AskForPassword();
 
-            var user = _factory.createUser(firstName, lastName, email, SSN, username, password);
+            var user = _factory.CreateUser(firstName, lastName, email, SSN, username, password);
             _dataManager.SaveUser(user);
             _viewManager.ChangeToAccountView(user);
             

@@ -19,7 +19,7 @@ namespace BankApplication.Factories
             return new BankAccount(_accountNumberManager, initialDeposit, bankAccountType);
         }
 
-        public IUser createUser(string firstName, string lastName, string email, int SSN, string username, string password)
+        public IUser CreateUser(string firstName, string lastName, string email, int SSN, string username, string password)
         {
             return new User(firstName, lastName, email, SSN, username.ToLower(), password);
         }

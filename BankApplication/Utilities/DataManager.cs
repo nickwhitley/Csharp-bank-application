@@ -30,5 +30,11 @@ namespace BankApplication.Utilities
             var returnTuple = usersData.VerifyUsernameAndPassword(username, password);
             return returnTuple;
         }
+
+        public bool SaveUserAccount(IUser user, IBankAccount bankAccount)
+        {
+            
+            return userAccountsData.AddUserBankAccount(user, bankAccount);
+        }
     }
 }
