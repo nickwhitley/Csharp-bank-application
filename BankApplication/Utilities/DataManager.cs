@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace BankApplication.Utilities
 {
+    //should this be static so it doesn't have to be initialized?
+
     internal class DataManager
     {
         IUsersData usersData = new UsersData();
