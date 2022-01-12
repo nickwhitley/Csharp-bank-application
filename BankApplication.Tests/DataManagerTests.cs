@@ -13,6 +13,7 @@ namespace BankApplication.Tests
 {
     public class DataManagerTests
     {
+
         [Fact]
         public void SaveUserAccount_ShouldSave()
         {
@@ -33,14 +34,40 @@ namespace BankApplication.Tests
         public void VerifyUserLogin_ShouldPass()
         {
             Factory factory = new Factory();
-            UsersData usersData = new UsersData();
             DataManager dataManager = new DataManager();
             IUser user = factory.CreateUser("testFirstName", "testLastName", "test@email.com", 111111111, "testUsername", "testPassword");
 
-            usersData.AddUser(user);
-            var returnTuple = dataManager.VerifyUserLogin(user.Username, user.Password);
+            dataManager.SaveUser(user);
+            var result = dataManager.VerifyUserLogin("testUsername", "testPassword");
 
-            Assert.True(returnTuple.Item1);
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void SaveUser_ShouldPass()
+        {
+            Factory factory = new Factory();
+            DataManager dataManager = new DataManager();
+            IUser user = factory.CreateUser("testFirstName", "testLastName", "test@email.com", 111111111, "testUsername", "testPassword");
+
+            dataManager.SaveUser(user);
+            var returnedUser = dataManager.GetUser("testUsername");
+
+            Assert.NotNull(returnedUser);
+        }
+
+        [Fact]
+        
+        public void RemoveUser_ShouldRemove()
+        {
+            Factory factory = new Factory();
+            DataManager dataManager = new DataManager();
+            IUser user = factory.CreateUser("testFirstName", "testLastName", "test@email.com", 111111111, "testUsername", "testPassword");
+
+            dataManager.SaveUser(user);
+            dataManager.RemoveUser(user);
+
+            Assert.Throws<Exception>(() => dataManager.GetUser("testUsername"));
         }
     }
 

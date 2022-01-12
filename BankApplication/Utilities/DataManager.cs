@@ -22,15 +22,19 @@ namespace BankApplication.Utilities
             Console.WriteLine($"user saved: { user.FirstName }, { user.LastName }, {user.Email}");
         }
 
-        void RemoveUser(IUser user)
+        public void RemoveUser(IUser user)
         {
             usersData.RemoveUser(user);
         }
 
-        public Tuple<bool, IUser?> VerifyUserLogin(string username, string password)
+        public IUser GetUser(string username)
         {
-            var returnTuple = usersData.VerifyUsernameAndPassword(username, password);
-            return returnTuple;
+            return usersData.TryGetUser(username);
+        }
+
+        public bool VerifyUserLogin(string username, string password)
+        {
+            return usersData.VerifyUsernameAndPassword(username, password);
         }
 
         public bool SaveUserAccount(IUser user, IBankAccount bankAccount)

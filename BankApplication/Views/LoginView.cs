@@ -53,15 +53,13 @@ namespace BankApplication.Views
 
         private void VerifyLoginInfo(string username, string password)
         {
-            var userCheck = _dataManager.VerifyUserLogin(username, password);
-            if(userCheck.Item1 == false)
+            if(!(_dataManager.VerifyUserLogin(username, password)))
             {
                 Console.WriteLine("Incorrect username or password, please try again.");
                 PrintLoginForm();
-            }
-            if(userCheck.Item1 == true)
+            } else
             {
-                _viewManager.ChangeToAccountView(userCheck.Item2);
+                _viewManager.ChangeToAccountView(_dataManager.GetUser(username));
             }
         }
     }

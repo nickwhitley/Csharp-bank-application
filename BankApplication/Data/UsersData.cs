@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,11 +23,22 @@ namespace BankApplication.Data
             _users.Remove(user);
         }
 
-        public Tuple<bool, IUser?> VerifyUsernameAndPassword(string username, string password)
+        public IUser TryGetUser(string username)
+        {
+            foreach (var user in _users)
+            {
+                if (user.Username == username.ToLower())
+                {
+                    return user;
+                }
+            }
+            throw new Exception("User does not exist");
+        }
+
+        public bool VerifyUsernameAndPassword(string username, string password)
         {
             bool usernameCheck = false;
             bool passwordCheck = false;
-            Tuple<bool, IUser>? exisitngUser = new Tuple<bool, IUser>(false, null);
 
             foreach (var user in _users)
             {
@@ -40,12 +52,11 @@ namespace BankApplication.Data
                 }
                 if(usernameCheck && passwordCheck)
                 {
-                    Tuple<bool, IUser> existingUser = new Tuple<bool, IUser>(true, user);
-                    return existingUser;
+                    return true;
                 }
             }
 
-            return exisitngUser;
+            return false;
         }
     }
 }

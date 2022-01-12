@@ -14,12 +14,14 @@ namespace BankApplication.Interfaces
 
         void RemoveUser(IUser user);
 
+        IUser TryGetUser(string username);
+
         /// <summary>
         /// Used to check if there's an existing user with given username and password.
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns> A Tuple<bool, IUser>, Item1 is true if user exists, Item2 is the user itself.</bool></returns>
-        Tuple<bool, IUser?> VerifyUsernameAndPassword(string username, string password);
+        bool VerifyUsernameAndPassword(string username, string password);
     }
 }

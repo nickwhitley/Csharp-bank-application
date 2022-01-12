@@ -10,8 +10,8 @@ namespace BankApplication.Utilities
 {
     internal class AccountNumberManager : IAccountNumberManager
     {
-        private readonly int accountNumberMin = 111111111;
-        private readonly int accountNumberMax = 999999999;
+        internal readonly int accountNumberMin = 111111111;
+        internal readonly int accountNumberMax = 999999999;
 
         private List<int> _accountNumbers = new List<int>();
         public List<int> AccountNumbers => _accountNumbers;
