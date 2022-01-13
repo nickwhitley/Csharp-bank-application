@@ -42,5 +42,10 @@ namespace BankApplication.Utilities
             
             return userAccountsData.AddUserBankAccount(user, bankAccount);
         }
+
+        public List<IBankAccount>? GetUserBankAccounts(IUser user)
+        {
+            return userAccountsData.GetUserBankAccounts(user);
+        }
     }
 }

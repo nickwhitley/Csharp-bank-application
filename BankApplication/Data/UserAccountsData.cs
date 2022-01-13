@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,16 @@ namespace BankApplication.Data
 
         public List<IBankAccount> GetUserBankAccounts(IUser user)
         {
-            throw new NotImplementedException();
+            List<IBankAccount>? userAccounts = null;
+            foreach (var account in UserBankAccounts)
+            {
+                if(account.Key == user)
+                {
+                    userAccounts.Add(account.Value);
+                }
+            }
+            UserBankAccounts.
+            return userAccounts;
         }
 
         public void RemoveUserBankAccount(IUser user, IBankAccount bankAccount)

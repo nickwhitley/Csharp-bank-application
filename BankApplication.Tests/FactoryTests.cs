@@ -21,15 +21,6 @@ namespace BankApplication.Tests
         }
 
         [Fact]
-        public void CreateAccount_ShouldThrowException()
-        {
-            var factory = new Factory();
-            //var account = factory.CreateBankAccount(-500.00m, Enums.BankAccountType.Checking);
-
-            Assert.Throws<Exception>(() => factory.CreateBankAccount(-500.00m, Enums.BankAccountType.Checking));
-        }
-
-        [Fact]
         public void CreateUser_ShouldCreate()
         {
             var factory = new Factory();

@@ -68,6 +68,34 @@ namespace BankApplication.Tests
 
             Assert.Throws<Exception>(() => dataManager.GetUser("testUsername"));
         }
+
+        [Fact]
+        public void GetUserBankAccounts_ShouldNotBeNull()
+        {
+            Factory factory = new Factory();
+            DataManager dataManager = new DataManager();
+            IUser user = factory.CreateUser("testName", "testName", "test@email.com", 111111111, "testUsername", "testPassword");
+            IBankAccount account = factory.CreateBankAccount(500m, Enums.BankAccountType.Checking);
+
+            dataManager.SaveUser(user);
+            dataManager.SaveUserAccount(user, account);
+            var userAccounts = dataManager.GetUserBankAccounts(user);
+
+            Assert.NotNull(userAccounts);
+        }
+
+        [Fact]
+        public void GetUserBankAccounts_ShouldBeNull()
+        {
+            Factory factory = new Factory();
+            DataManager dataManager = new DataManager();
+            IUser user = factory.CreateUser("testName", "testName", "test@email.com", 111111111, "testUsername", "testPassword");
+
+            dataManager.SaveUser(user);
+            var userAccounts = dataManager.GetUserBankAccounts(user);
+
+            Assert.Null(userAccounts);
+        }
     }
 
 
