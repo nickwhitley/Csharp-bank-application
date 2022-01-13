@@ -57,7 +57,6 @@ namespace BankApplication.Tests
         }
 
         [Fact]
-        
         public void RemoveUser_ShouldRemove()
         {
             Factory factory = new Factory();

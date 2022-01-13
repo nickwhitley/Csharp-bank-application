@@ -80,6 +80,11 @@ namespace BankApplication.Views.AccountViewMenus
             decimal returnDeposit;
             if(decimal.TryParse(Console.ReadLine(),out returnDeposit))
             {
+                if(returnDeposit < 0)
+                {
+                    Console.WriteLine("Intitial deposit cannot be below $0. Please try again.");
+                    return GetInitialDeposit();
+                }
                 return returnDeposit;
             }
             Console.WriteLine("Incorrect input, please try again");
