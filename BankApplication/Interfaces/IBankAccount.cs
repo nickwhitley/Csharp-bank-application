@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankApplication.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace BankApplication.Interfaces
     {
         int AccountNumber { get; }
         Decimal AccountBalance { get; }
+        BankAccountType BankAccountType { get; }
         void WithdrawFunds(Decimal amount);
         void DepositFunds(Decimal amount);
         void TransferFunds(Decimal amount, IBankAccount recipientAccount);

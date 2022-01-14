@@ -1,4 +1,5 @@
 ﻿using BankApplication.Data;
+using BankApplication.Enums;
 using BankApplication.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankApplication.BankAccounts;
 
 namespace BankApplication.Utilities
 {
@@ -43,9 +45,20 @@ namespace BankApplication.Utilities
             return userAccountsData.AddUserBankAccount(user, bankAccount);
         }
 
-        public List<IBankAccount>? GetUserBankAccounts(IUser user)
+        public List<IBankAccount> GetUserBankAccounts(IUser user)
         {
             return userAccountsData.GetUserBankAccounts(user);
+        }
+
+        public bool TryLogTransaction(ITransaction transaction)
+        {
+            /// TODO: Not logging transaction according to unit tests.
+            return userAccountsData.TryLogTransaction(transaction);
+        }
+
+        public bool VerifyLoggedTransaction(ITransaction transaction, IBankAccount account)
+        {
+            return userAccountsData.TransactionLogVerify(transaction, account);
         }
     }
 }

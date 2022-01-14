@@ -24,5 +24,17 @@ namespace BankApplication.Factories
             return new User(firstName, lastName, email, SSN, username.ToLower(), password);
         }
 
+        public ITransaction CreateTransaction(decimal amount, TransactionType transactionType, 
+            IBankAccount bankAccount, IBankAccount? bankAccount2)
+        {
+            if(bankAccount2 == null)
+            {
+                return new Transaction(amount, transactionType, bankAccount);
+            } else
+            {
+                return new Transaction(amount, transactionType, bankAccount, bankAccount2);
+            }
+        }
+
     }
 }

@@ -58,10 +58,11 @@ namespace BankApplication.Views
             Console.WriteLine($"please enter the number of your selection.");
             if (int.TryParse(Console.ReadLine(), out choice))
             {
+                _viewManager.ClearScreen();
                 switch (choice)
                 {
                     case 1:
-                        CheckBalancesScreen checkBalances = new CheckBalancesScreen(this._user, _dataManager);
+                        CheckBalancesScreen checkBalances = new CheckBalancesScreen(this._user, _dataManager, _viewManager);
                         break;
                     case 2:
                         TransferScreen transfer = new TransferScreen();

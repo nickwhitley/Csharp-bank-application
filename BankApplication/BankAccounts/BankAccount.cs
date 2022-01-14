@@ -19,6 +19,8 @@ namespace BankApplication.BankAccounts
 
         public decimal AccountBalance => _accountBalance;
 
+        public BankAccountType BankAccountType => _bankAccountType;
+
         IAccountNumberManager _accountNumberManager;
         #endregion
 

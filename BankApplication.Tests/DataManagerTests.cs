@@ -96,6 +96,22 @@ namespace BankApplication.Tests
 
             Assert.Null(userAccounts);
         }
+
+        [Fact]
+        public void TryLogTransaction_ShouldLogDeposit()
+        {
+            Factory factory = new Factory();
+            DataManager dataManager = new DataManager();
+            UserAccountsData userAccountsData = new UserAccountsData();
+            IUser user = factory.CreateUser("testName", "testName", "test@email.com", 111111111, "testUsername", "testPassword");
+            IBankAccount bankAccount = factory.CreateBankAccount(500.00m, Enums.BankAccountType.Checking);
+            ITransaction transaction = factory.CreateTransaction(500.00m, Enums.TransactionType.Deposit, bankAccount, null);
+
+            dataManager.SaveUser(user);
+            dataManager.SaveUserAccount(user, bankAccount);
+
+            Assert.True(dataManager.VerifyLoggedTransaction(transaction, bankAccount));
+        }
     }
 
 
