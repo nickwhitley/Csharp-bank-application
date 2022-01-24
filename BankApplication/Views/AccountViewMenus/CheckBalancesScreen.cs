@@ -28,9 +28,8 @@ namespace BankApplication.Views.AccountViewMenus
             if (GetAccounts() == null)
             {
                 Console.WriteLine("You don't have any accounts open. Returning to main menu.");
-                Thread.Sleep(3000);
+                Thread.Sleep(2000);
                 _viewManager.ChangeToAccountView(_user);
-
             }
 
             var userAccounts = GetAccounts();
@@ -58,7 +57,7 @@ namespace BankApplication.Views.AccountViewMenus
             string accountType = account.BankAccountType.ToString();
             string accountBalance = account.AccountBalance.ToString("C", CultureInfo.CurrentCulture);
 
-            Console.WriteLine($"{ accountType }({ accountNumberLastFour }):  { accountBalance }\n");
+            Console.WriteLine($"{ accountType }({ accountNumberLastFour }):  { accountBalance }");
         }
 
         private string FormatAccountNumberLastFour(int accountNum)

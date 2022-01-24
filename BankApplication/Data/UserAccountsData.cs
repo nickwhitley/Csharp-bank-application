@@ -11,13 +11,13 @@ namespace BankApplication.Data
 {
     internal class UserAccountsData : IUserAccountsData
     {
-        private Dictionary<IUser, IBankAccount> userBankAccounts = new Dictionary<IUser, IBankAccount>();
+        private Dictionary<IBankAccount, IUser> userBankAccounts = new Dictionary<IBankAccount, IUser>();
         private Dictionary<IBankAccount, List<ITransaction>> accountTransactions = new Dictionary<IBankAccount, List<ITransaction>>();
        
 
         public bool AddUserBankAccount(IUser user, IBankAccount bankAccount)
         {
-            return userBankAccounts.TryAdd(user, bankAccount);
+            return userBankAccounts.TryAdd(bankAccount, user);
             
         }
 
@@ -26,9 +26,9 @@ namespace BankApplication.Data
             var userAccounts = new List<IBankAccount>();
             foreach (var account in userBankAccounts)
             {
-                if(account.Key == user)
+                if(account.Value == user)
                 {
-                    userAccounts.Add(account.Value);
+                    userAccounts.Add(account.Key);
                 }
             }
             if(userAccounts.Count == 0)
@@ -36,6 +36,7 @@ namespace BankApplication.Data
                 Console.WriteLine("user has no accounts.");
                 return null;
             }
+            
             return userAccounts;
         }
 

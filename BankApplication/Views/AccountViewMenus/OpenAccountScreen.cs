@@ -32,7 +32,7 @@ namespace BankApplication.Views.AccountViewMenus
             Console.WriteLine("Open Account:");
             PrintAccountChoiceMenu();
             GetAccountSelection();
-            Console.ReadKey();
+            ReturnToAccountScreen();
         }
 
         private void PrintAccountChoiceMenu()
@@ -66,13 +66,13 @@ namespace BankApplication.Views.AccountViewMenus
             if(_dataManager.SaveUserAccount(_user, bankAccount))
             {
                 Console.WriteLine("Your account has been created.");
+                Thread.Sleep(1000);
 
             } else
             {
                 Console.WriteLine("Something went wrong, please try again.");
-            }
-            ReturnToAccountScreen();
-            
+                Thread.Sleep(1000);
+            }            
         }
 
         private decimal GetInitialDeposit()

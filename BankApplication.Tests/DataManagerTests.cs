@@ -85,6 +85,26 @@ namespace BankApplication.Tests
         }
 
         [Fact]
+        public void GetMultipleUserBankAccounts_ShouldReturnMultiple()
+        {
+            Factory factory = new Factory();
+            DataManager dataManager = new DataManager();
+            IUser user = factory.CreateUser("testName", "testName", "test@email.com", 111111111, "testUsername", "testPassword");
+            IBankAccount account1 = factory.CreateBankAccount(500m, Enums.BankAccountType.Checking);
+            IBankAccount account2 = factory.CreateBankAccount(1000m, Enums.BankAccountType.Savings);
+            IBankAccount account3 = factory.CreateBankAccount(10000m, Enums.BankAccountType.Savings);
+
+            dataManager.SaveUser(user);
+            dataManager.SaveUserAccount(user, account1);
+            dataManager.SaveUserAccount(user, account2);
+            dataManager.SaveUserAccount(user, account3);
+            var userAccounts = dataManager.GetUserBankAccounts(user);
+            int expectedNumOfAccounts = 3;
+
+            Assert.Equal(userAccounts.Count, expectedNumOfAccounts);
+        }
+
+        [Fact]
         public void GetUserBankAccounts_ShouldBeNull()
         {
             Factory factory = new Factory();
@@ -109,6 +129,23 @@ namespace BankApplication.Tests
 
             dataManager.SaveUser(user);
             dataManager.SaveUserAccount(user, bankAccount);
+
+            Assert.True(dataManager.TryLogTransaction(transaction));
+        }
+
+        [Fact]
+        public void VerifyTransaction_ShouldVerify()
+        {
+            Factory factory = new Factory();
+            DataManager dataManager = new DataManager();
+            UserAccountsData userAccountsData = new UserAccountsData();
+            IUser user = factory.CreateUser("testName", "testName", "test@email.com", 111111111, "testUsername", "testPassword");
+            IBankAccount bankAccount = factory.CreateBankAccount(500.00m, Enums.BankAccountType.Checking);
+            ITransaction transaction = factory.CreateTransaction(500.00m, Enums.TransactionType.Deposit, bankAccount, null);
+
+            dataManager.SaveUser(user);
+            dataManager.SaveUserAccount(user, bankAccount);
+            dataManager.TryLogTransaction(transaction);
 
             Assert.True(dataManager.VerifyLoggedTransaction(transaction, bankAccount));
         }
